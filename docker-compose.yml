@@ -1,0 +1,22 @@
+version: '3.7'
+services:
+  postgresdb:
+    image: postgres
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+  web:
+    build: .
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    volumes:
+      - .:/var/www/marketplace_barebones
+      - bundle-data:/var/www/bundle
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgresdb
+
+volumes:
+  postgres-data:
+    driver: local
+  bundle-data:
+    driver: local
