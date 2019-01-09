@@ -27,7 +27,7 @@ gem "jbuilder", "~> 2.5"
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.7'
+gem "bcrypt", "~> 3.1.7"
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
@@ -66,6 +66,8 @@ group :development do
   gem "faker"
   # Ruby library that pretty prints Ruby objects in full color exposing
   gem "awesome_print"
+  # Use to exec tests into controller with RSpec
+  gem "rails-controller-testing"
 end
 
 group :test do
@@ -89,4 +91,4 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'graphiql-rails', group: :development
+gem "graphiql-rails", group: :development

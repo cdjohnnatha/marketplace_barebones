@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Types
   class AuthProviderEmailInput < BaseInputObject
     description "Attributes for auth provider using email"

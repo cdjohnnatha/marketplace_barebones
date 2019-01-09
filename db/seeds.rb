@@ -14,5 +14,5 @@ users = User.create(name: "Shopify User", email: "shopify@folks.com", password: 
 
 
 10.times do
-    users = User.create name: Faker::Book.author, email: Faker::Internet.email, password: Faker::Internet.password
+  users = User.create name: Faker::Book.author, email: Faker::Internet.email, password: Faker::Internet.password
 end

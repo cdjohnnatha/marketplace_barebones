@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Types
   class UserType < BaseObject
     description "An user type"

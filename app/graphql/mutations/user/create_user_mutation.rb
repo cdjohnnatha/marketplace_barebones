@@ -1,16 +1,18 @@
+# frozen_string_literal: true
+
 module Mutations::User
-  class CreateUser < BaseMutation
+  class CreateUserMutation < BaseMutation
     null true
 
     argument :authProvider, Types::AuthProviderEmailInput, required: true
     argument :name, String, required: true
-    
+
     field :user, Types::UserType, null: false
     field :errors, [String], null: false
 
     def resolve(args)
       user = ::User.create(
-        name: args[:name], 
+        name: args[:name],
         email: args[:auth_provider][:email][:email],
         password: args[:auth_provider][:email][:password]
       )
