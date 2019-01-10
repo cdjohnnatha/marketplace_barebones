@@ -5,8 +5,8 @@ module Types
     class AuthProviderInput < BaseInputObject
       description "Attributes for auth provider"
 
-      argument :email, String, required: true
-      argument :password, String, required: true
+      argument :email, String, required: false
+      argument :password, String, required: false
     end
   end
 end

@@ -7,7 +7,8 @@ class GraphqlController < ApplicationController
     operation_name = params[:operationName]
     context = {
       # Query context goes here, for example:
-      # current_user: current_user,
+      session: session,
+      current_user: current_user,
     }
     result = MarketplaceBarebonesSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
@@ -17,6 +18,17 @@ class GraphqlController < ApplicationController
   end
 
   private
+    def current_user
+      return unless session[:token]
+      secret = ENV["SECRET_KEY_BASE"] || "ShopifolksWillGenerateAShopifySecretKey"
+
+      crypt = ActiveSupport::MessageEncryptor.new(secret.byteslice(0..31))
+      token = crypt.decrypt_and_verify session[:token]
+      user_id = token.gsub('user_id:', '').to_i
+      ::User.find_by id: user_id
+    rescue ActiveSupport::MessageVerifier::InvalidSignature
+      nil
+    end
 
     # Handle form data, JSON body, or a blank value
     def ensure_hash(ambiguous_param)
