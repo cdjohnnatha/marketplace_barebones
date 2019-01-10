@@ -12,9 +12,11 @@ module Mutations
       
       return unless user
       return unless user.authenticate(input[:password])
-
-      crypt = ActiveSupport::MessageEncryptor.new(Rails.application.secrets.secret_key_base.byteslice(0..31))
-      token = crypt.encrypt_and_sign("user_id: #{user.id}")
+      puts Rails.application.secrets.secret_key_base
+      secret = ENV["SECRET_KEY_BASE"] || "ShopifolksWillGenerateAShopifySecretKey"
+      crypt = ActiveSupport::MessageEncryptor.new(secret.byteslice(0..31))
+      token = crypt.encrypt_and_sign("user_id:#{user.id}")
+      context[:session] = token
 
       OpenStruct.new({
         user: user,
