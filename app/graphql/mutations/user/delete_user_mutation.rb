@@ -12,7 +12,7 @@ module Mutations
           { user: user, errors: user.errors.full_messages }
         end
       
-      rescue ActiveRecord::RecordInvalid => invalid
+      rescue ActiveRecord::ActiveRecordError => invalid
         GraphQL::ExecutionError.new(invalid)
       end
     end

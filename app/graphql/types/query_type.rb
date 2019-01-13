@@ -2,6 +2,13 @@
 
 module Types
   class QueryType < BaseObject
-    field :listUsers, [UserType, null: true], null: false, resolve: -> (obj, args, ctx) { User.all }
+    field :showUser, UserType, null: false do
+      argument :id, ID, required: true
+    end
+  
+    def show_user(id:)
+      ::User.find(id)
+    end
+    
   end
 end

@@ -8,3 +8,10 @@ RSpec.shared_examples "an unauthorized" do |object_name, object_action|
     expect(result["errors"].first["message"]).to eq("Not authorized to access #{object_name}.#{object_action}")
   end
 end
+
+RSpec.shared_examples "a common error" do
+  it "should be unauthorized" do
+    expect(result["errors"]).to_not be_blank
+    expect(result["errors"].first).to have_key("message")
+  end
+end

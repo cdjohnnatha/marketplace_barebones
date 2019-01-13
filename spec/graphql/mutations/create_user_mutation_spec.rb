@@ -20,7 +20,7 @@ RSpec.describe Mutations::User::CreateUserMutation do
   }
   let(:valid_attr) { attributes_for(:user).to_h }
 
-  describe "testing mutations quezzry" do
+  describe "testing create mutations query" do
     context "creating User" do
       let(:query_string) { %| mutation { createUser(name: "#{valid_attr[:name]}", authProvider: { email: { email: "#{valid_attr[:email]}", password: "#{valid_attr[:password]}" } }) { user { id, name, email } } } | }
 
@@ -46,7 +46,7 @@ RSpec.describe Mutations::User::CreateUserMutation do
         end
       end
       
-      context "when is send a wront attribute" do
+      context "when is send a wrong attribute" do
         let(:query_string) { %| mutation { createUser(surname: "#{nil}", authProvider: { email: { email: "#{valid_attr[:email]}", password: "#{valid_attr[:password]}" } }) { user { id, name, email } } } | }
         it "should be user:null" do
           expect(result["errors"]).not_to be_blank
