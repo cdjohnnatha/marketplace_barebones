@@ -42,6 +42,7 @@ gem "graphql", ">= 1.8"
 
 gem "dotenv-rails"
 
+gem "paranoia", "~> 2.2"
 
 
 group :development, :test do
