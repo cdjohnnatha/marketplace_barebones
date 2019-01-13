@@ -2,6 +2,7 @@
 
 module Types
   class MutationType < BaseObject
+    field :deleteProduct, null: false, mutation: Mutations::Products::DeleteProductMutation
     field :updateProduct, null: false, mutation: Mutations::Products::UpdateProductMutation
     field :createProduct, null: false, mutation: Mutations::Products::CreateProductMutation
     field :deleteUser, null: false, mutation: Mutations::User::DeleteUserMutation

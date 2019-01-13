@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2019_01_13_172109) do
     t.bigint "products_id"
     t.decimal "price"
     t.integer "qty_products"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["carts_id"], name: "index_cart_items_on_carts_id"
@@ -29,6 +30,7 @@ ActiveRecord::Schema.define(version: 2019_01_13_172109) do
   create_table "carts", force: :cascade do |t|
     t.bigint "users_id"
     t.decimal "total_amount"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["users_id"], name: "index_carts_on_users_id"
@@ -38,6 +40,7 @@ ActiveRecord::Schema.define(version: 2019_01_13_172109) do
     t.string "title"
     t.decimal "price", default: "0.0"
     t.integer "qty_available", default: 0
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -46,6 +49,7 @@ ActiveRecord::Schema.define(version: 2019_01_13_172109) do
     t.string "name"
     t.string "email"
     t.string "password_digest"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
