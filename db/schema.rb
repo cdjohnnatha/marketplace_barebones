@@ -36,8 +36,8 @@ ActiveRecord::Schema.define(version: 2019_01_13_172109) do
 
   create_table "products", force: :cascade do |t|
     t.string "title"
-    t.decimal "price"
-    t.integer "inventory_count"
+    t.decimal "price", default: "0.0"
+    t.integer "qty_available", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
