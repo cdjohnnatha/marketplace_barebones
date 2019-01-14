@@ -1,7 +1,9 @@
+require "faker"
+
 FactoryBot.define do
   factory :product do
-    title { "MyString" }
-    price { "9.99" }
-    inventory_count { 1 }
+    title { Faker::Music.instrument }
+    price { Faker::Number.decimal(2) }
+    qty_available { Faker::Number.between(1, 10) }
   end
 end
