@@ -14,6 +14,11 @@ module Mutations
         inputs = {}
         inputs[:email] = args[:email] unless args[:email].nil?
         inputs[:name] = args[:name] unless args[:name].nil?
+        
+        if inputs.empty?
+          return GraphQL::ExecutionError.new(I18n.t(:empty_attributes, model: :cart, scope: [:errors, :messages]))
+        end
+        
         user = ::User.find_by(id: args[:id])
         user.update!(inputs.to_h)
 

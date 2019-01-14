@@ -34,4 +34,4 @@ en:
     format: "%{attribute} %{message}"
     messages:
       already_opened_cart: "User with id: %{attribute} already have a non purchased cart!"
-      hello: "test"
+      empty_attributes: "It is necessary at least send one attribute to update the %{model}"

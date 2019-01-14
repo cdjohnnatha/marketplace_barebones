@@ -16,6 +16,9 @@ module Mutations
         inputs[:title] = args[:title] unless args[:title].nil?
         inputs[:price] = args[:price] unless args[:price].nil?
         inputs[:qty_available] = args[:qty_available] unless args[:qty_available].nil?
+        if inputs.empty?
+          return GraphQL::ExecutionError.new(I18n.t(:empty_attributes, model: :cart, scope: [:errors, :messages]))
+        end
         product = ::Product.find_by(id: args[:id])
         product.update!(inputs.to_h)
 

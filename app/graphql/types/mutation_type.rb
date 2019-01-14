@@ -2,6 +2,8 @@
 
 module Types
   class MutationType < BaseObject
+    field :updateCart, null: false, mutation: Mutations::Cart::UpdateCartMutation
+    field :deleteCart, null: false, mutation: Mutations::Cart::DeleteCartMutation
     field :createCart, null: false, mutation: Mutations::Cart::CreateCartMutation
     field :deleteProduct, null: false, mutation: Mutations::Products::DeleteProductMutation
     field :updateProduct, null: false, mutation: Mutations::Products::UpdateProductMutation

@@ -13,7 +13,6 @@ module Mutations
 
       def resolve(args)
         isOpenCart = ::Cart.where("state = 0 and user_id = #{args[:user_id]}").exists?
-        puts isOpenCart
         if isOpenCart
           return GraphQL::ExecutionError.new(I18n.t(:already_opened_cart, attribute: args[:user_id], scope: [:errors, :messages]))
         end
