@@ -28,8 +28,8 @@ RSpec.describe Mutations::Products::CreateProductMutation do
           expect(result["errors"]).to be_blank
         end
         it_behaves_like "a product attributes" do
-          let(:query_object) { "createProduct" }
           let(:attrs) { valid_attr }
+          let(:query_object) { "createProduct" }
         end
         it_behaves_like "a product fields", "createProduct"
       end
