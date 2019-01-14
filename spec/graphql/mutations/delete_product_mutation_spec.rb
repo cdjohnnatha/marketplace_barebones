@@ -4,7 +4,7 @@ require "rails_helper"
 
 RSpec.describe Mutations::Products::DeleteProductMutation do
   let(:product) { create(:product) }
-  let(:context) { { } }
+  let(:context) { {} }
   let(:variables) { {} }
   # Call `result` to execute the query
   let(:result) {
@@ -23,7 +23,7 @@ RSpec.describe Mutations::Products::DeleteProductMutation do
   describe "destroy user" do
     context "valid attrs" do
       let(:query_string) { %| mutation { deleteProduct(id: #{product.id}) { product { id, price, title, qtyAvailable } } } | }
-      
+
       it_behaves_like "a product fields", "deleteProduct"
     end
     context "Testing errors" do
@@ -31,12 +31,12 @@ RSpec.describe Mutations::Products::DeleteProductMutation do
         let(:query_string) { %| mutation { deleteProduct(id #{nil}") { product { id, title, price, qtyAvailable } } } | }
         it_behaves_like "a common error"
       end
-    
+
       context "when is send a wrong attribute" do
         let(:query_string) { %| mutation { deleteProduct(name: #{product.id}") { product { id, title, price, qtyAvailable } } } | }
         it_behaves_like "a common error"
       end
-    
+
       context "not found id" do
         let(:query_string) { %| mutation { deleteProduct(id: -1) { product { id, title, price, qtyAvailable } } } | }
         it_behaves_like "a common error"

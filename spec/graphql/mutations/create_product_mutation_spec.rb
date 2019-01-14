@@ -4,7 +4,7 @@ require "rails_helper"
 
 RSpec.describe Mutations::Products::CreateProductMutation do
   let(:product) { create(:product) }
-  let(:context) { { } }
+  let(:context) { {} }
   let(:variables) { {} }
   let(:result) {
     res = MarketplaceBarebonesSchema.execute(
@@ -39,7 +39,7 @@ RSpec.describe Mutations::Products::CreateProductMutation do
           expect(result["errors"]).not_to be_blank
         end
       end
-      
+
       context "when is send a wrong attribute" do
         let(:query_string) { %| mutation { createProduct(product: { name: "#{valid_attr[:title]}", price: #{valid_attr[:price]}, qtyAvailable: #{valid_attr[:qty_available]} }) { product { id, title, price, qtyAvailable } } } | }
         it "should be product attribute null as return" do

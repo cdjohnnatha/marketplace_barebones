@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Mutations
   module User
     class DeleteUserMutation < BaseMutation
@@ -9,9 +11,9 @@ module Mutations
         if user
           { user: user, errors: nil }
         else user
-          { user: user, errors: user.errors.full_messages }
+             { user: user, errors: user.errors.full_messages }
         end
-      
+
       rescue ActiveRecord::ActiveRecordError => invalid
         GraphQL::ExecutionError.new(invalid)
       end

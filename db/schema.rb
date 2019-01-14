@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -28,12 +30,13 @@ ActiveRecord::Schema.define(version: 2019_01_13_172109) do
   end
 
   create_table "carts", force: :cascade do |t|
-    t.bigint "users_id"
-    t.decimal "total_amount"
+    t.bigint "user_id"
+    t.decimal "total_amount", default: "0.0"
+    t.integer "state", limit: 2, default: 0
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["users_id"], name: "index_carts_on_users_id"
+    t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -56,5 +59,5 @@ ActiveRecord::Schema.define(version: 2019_01_13_172109) do
 
   add_foreign_key "cart_items", "carts", column: "carts_id"
   add_foreign_key "cart_items", "products", column: "products_id"
-  add_foreign_key "carts", "users", column: "users_id"
+  add_foreign_key "carts", "users"
 end

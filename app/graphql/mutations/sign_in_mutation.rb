@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Mutations
   class SignInMutation < BaseMutation
     argument :email, Types::Inputs::AuthProviderInput, required: true
@@ -9,7 +11,7 @@ module Mutations
       return unless input
 
       user = ::User.find_by email: input[:email]
-      
+
       return unless user
       return unless user.authenticate(input[:password])
       puts Rails.application.secrets.secret_key_base
@@ -18,10 +20,10 @@ module Mutations
       token = crypt.encrypt_and_sign("user_id:#{user.id}")
       context[:session] = token
 
-      OpenStruct.new({
+      OpenStruct.new(
         user: user,
         token: token
-      })
+      )
     rescue ActiveRecord::RecordInvalid => invalid
       GraphQL::ExecutionError.new(invalid)
     end

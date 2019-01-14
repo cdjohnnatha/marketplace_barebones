@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Types
   class SignInPayloadType < BaseObject
     description "Attributes for sign in"

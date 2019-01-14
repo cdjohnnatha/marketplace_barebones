@@ -4,7 +4,7 @@ require "rails_helper"
 
 RSpec.describe Mutations::User::UpdateUserMutation do
   let(:user) { create(:user) }
-  let(:context) { { } }
+  let(:context) { {} }
   let(:variables) { {} }
   # Call `result` to execute the query
   let(:result) {
@@ -22,7 +22,7 @@ RSpec.describe Mutations::User::UpdateUserMutation do
 
   describe "testing update user mutations query" do
     context "updating User" do
-      
+
       context "updating full entries" do
         let(:query_string) { %| mutation { updateUser(id: #{user.id}, name: "#{valid_attr[:name]}", email: "#{valid_attr[:email]}") { user { id, name, email } } } | }
         it "expected to have a name and email updated" do
@@ -59,7 +59,7 @@ RSpec.describe Mutations::User::UpdateUserMutation do
           let(:query_string) { %| mutation { updateUser(id #{user.id}, name: "#{nil}", email: "#{valid_attr[:email]}") { user { id, name, email } } } | }
           it_behaves_like "a common error"
         end
-      
+
         context "when is send a wrong attribute" do
           let(:query_string) { %| mutation { updateUser(id: #{user.id},surname: "#{nil}") { user { id, name, email } } } | }
           it_behaves_like "a common error"

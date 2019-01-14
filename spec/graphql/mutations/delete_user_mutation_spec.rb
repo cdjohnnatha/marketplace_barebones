@@ -4,7 +4,7 @@ require "rails_helper"
 
 RSpec.describe Mutations::User::DeleteUserMutation do
   let(:user) { create(:user) }
-  let(:context) { { } }
+  let(:context) { {} }
   let(:variables) { {} }
   # Call `result` to execute the query
   let(:result) {
@@ -35,12 +35,12 @@ RSpec.describe Mutations::User::DeleteUserMutation do
         let(:query_string) { %| mutation { deleteUser(id #{nil}") { user { id, name, email } } } | }
         it_behaves_like "a common error"
       end
-    
+
       context "when is send a wrong attribute" do
         let(:query_string) { %| mutation { deleteUser(name: #{user.id}") { user { id, name, email } } } | }
         it_behaves_like "a common error"
       end
-    
+
       context "not found id" do
         let(:query_string) { %| mutation { deleteUser(id: -1) { user { id, name, email } } } | }
         it_behaves_like "a common error"

@@ -4,7 +4,7 @@ require "rails_helper"
 
 RSpec.describe Mutations::Products::UpdateProductMutation do
   let(:product) { create(:product) }
-  let(:context) { { } }
+  let(:context) { {} }
   let(:variables) { {} }
   # Call `result` to execute the query
   let(:result) {
@@ -22,7 +22,7 @@ RSpec.describe Mutations::Products::UpdateProductMutation do
 
   describe "testing update product mutations query" do
     context "updating product" do
-      
+
       context "updating full entries" do
         let(:query_string) { %| mutation { updateProduct(id: #{product.id}, title: "#{valid_attr[:title]}", price: #{valid_attr[:price]}, qtyAvailable: #{valid_attr[:qty_available]}) { product { id, title, price, qtyAvailable } } } | }
         it "expected to have a title, price and qty_available updated" do
@@ -70,7 +70,7 @@ RSpec.describe Mutations::Products::UpdateProductMutation do
           let(:query_string) { %| mutation { updateProduct(id: #{product.id}, title: "#{nil}", price: #{valid_attr[:price]}, qtyAvailable: #{valid_attr[:qty_available]}) { product { id, title, price, qtyAvailable } } } | }
           it_behaves_like "a common error"
         end
-      
+
         context "when is send a wrong attribute" do
           let(:query_string) { %| mutation { updateProduct(id: #{product.id},surname: "#{nil}") { product { id, title, price, qtyAvailable } } } | }
           it_behaves_like "a common error"

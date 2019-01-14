@@ -4,7 +4,7 @@ require "rails_helper"
 
 RSpec.describe Mutations::User::CreateUserMutation do
   let(:user) { create(:user) }
-  let(:context) { { } }
+  let(:context) { {} }
   let(:variables) { {} }
   # Call `result` to execute the query
   let(:result) {
@@ -45,7 +45,7 @@ RSpec.describe Mutations::User::CreateUserMutation do
           expect(result["errors"]).not_to be_blank
         end
       end
-      
+
       context "when is send a wrong attribute" do
         let(:query_string) { %| mutation { createUser(surname: "#{nil}", authProvider: { email: { email: "#{valid_attr[:email]}", password: "#{valid_attr[:password]}" } }) { user { id, name, email } } } | }
         it "should be user:null" do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Mutations
   module Products
     class UpdateProductMutation < BaseMutation
@@ -5,7 +7,7 @@ module Mutations
       argument :title, String, required: false
       argument :price, Float, required: false
       argument :qty_available, Integer, required: false
-      
+
       field :product, Types::ProductType, null: false
       field :errors, [String], null: false
 
@@ -18,7 +20,7 @@ module Mutations
         product.update!(inputs.to_h)
 
         if product.valid?
-        { product: product, errors: nil }
+          { product: product, errors: nil }
           { product: product, errors: [] }
         else
           { product: nil, errors: product.errors.full_messages }

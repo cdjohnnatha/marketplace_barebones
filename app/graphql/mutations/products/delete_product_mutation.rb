@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Mutations
   module Products
     class DeleteProductMutation < BaseMutation
@@ -10,9 +12,9 @@ module Mutations
         if product
           { product: product, errors: nil }
         else product
-          { product: product, errors: product.errors.full_messages }
+             { product: product, errors: product.errors.full_messages }
         end
-      
+
       rescue ActiveRecord::ActiveRecordError => invalid
         GraphQL::ExecutionError.new(invalid)
       end

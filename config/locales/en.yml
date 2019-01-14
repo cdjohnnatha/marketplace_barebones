@@ -30,4 +30,8 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      already_opened_cart: "User with id: %{attribute} already have a non purchased cart!"
+      hello: "test"

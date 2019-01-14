@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Mutations
   module User
     class UpdateUserMutation < BaseMutation
@@ -16,7 +18,7 @@ module Mutations
         user.update!(inputs.to_h)
 
         if user.valid?
-        { user: user, errors: nil }
+          { user: user, errors: nil }
           { user: user, errors: [] }
         else
           { user: nil, errors: user.errors.full_messages }

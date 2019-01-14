@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Types
   class ProductType < BaseObject
     description "Product fields."
